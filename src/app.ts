@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { auth } from './config/authentication';
 
 import { corsOptions } from './config/cors';
 // import { auth } from './config/authentication';
@@ -13,10 +14,7 @@ app.use(express.json());
 
 app.use('/_matrix/client/v3', clientv3);
 
-// app.get('/', (req, res) => {
-//     return res.json({ hello: 'world' });
-// });
-
-// app.get('/secret', auth, (req, res) => {
-//     return res.json({ secret: 'message' });
-// });
+// utility routes
+app.get('/secret', auth, (req, res) => {
+    return res.json({ secret: 'message' });
+});
